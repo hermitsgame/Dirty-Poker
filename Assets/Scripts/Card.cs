@@ -11,7 +11,7 @@ public class Card : MonoBehaviour {
     private int id; // id карты
     private string suit; // масть карты
     private string rank; // ранк карты
-    private string location; // местонахождение карты
+    private string location = "Deck"; // местонахождение карты
 
     private int cardsGiven; // номер карты во время выдачи
 
