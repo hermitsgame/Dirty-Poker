@@ -13,6 +13,11 @@ public class GUIController : MonoBehaviour {
     [SerializeField] private GameObject Turn;
     [SerializeField] private GameObject River;
 
+    public float offsetX = 0.0f;
+    public float offsetY = 0.0f;
+    public float scaleMultiplierX = 1.0f;
+    public float scaleMultiplierY = 1.0f;
+
     public Card[] cards;
 
     void Start () {
@@ -24,10 +29,9 @@ public class GUIController : MonoBehaviour {
 
         if (deckController.GiveCardFlag == true) {
             cards = (Card[])GameObject.FindObjectsOfType(typeof(Card));
+            CardTransformer(cards);
             deckController.GiveCardFlag = false;
         }
-
-
     }
 
     void CardTransformer(Card[] cards) {
@@ -35,26 +39,32 @@ public class GUIController : MonoBehaviour {
         for (int i = 0; i < cards.Length; i++) {
 
             switch(cards[i].Location) {
-                case "Player Hand":
-                    
+                case "Player Hand": ChangeCardPosition(cards[i], playerHand, offsetX); break;
+                case "Flop": ChangeCardPosition(cards[i], flop, offsetX, offsetY, scaleMultiplierX, scaleMultiplierY); break;
+                case "Turn": ChangeCardPosition(cards[i], Turn, offsetX, offsetY, scaleMultiplierX, scaleMultiplierY); break;
+                case "River": ChangeCardPosition(cards[i], River, offsetX, offsetY, scaleMultiplierX, scaleMultiplierY); break;
 
-                    cards[i].gameObject.transform.position = new Vector3();
-                    cards[i].gameObject.transform.localScale = new Vector3();
-
-                    break;
-                   
+                default: Debug.Log("Unknown location!"); break;
             }
         }
     }
 
-    void ChangeCardPosition(Card card, GameObject parent, float offsetX, float scaleMultiplierX, float scaleMultiplierY) {
+    void ChangeCardPosition(Card card, GameObject parent, float offsetX, float offsetY, float scaleMultiplierX, float scaleMultiplierY) {
+
+        GameObjectUtility.SetParentAndAlign(card.gameObject, parent);
+        float posX = (offsetX * card.CardsGiven) + card.transform.position.x;
+        float posY = offsetY + card.transform.position.y;
+        card.gameObject.transform.position = new Vector3(posX, posY);
+        card.gameObject.transform.localScale = new Vector3(scaleMultiplierX, scaleMultiplierY);
+    }
+
+    void ChangeCardPosition(Card card, GameObject parent, float offsetX) {
 
         GameObjectUtility.SetParentAndAlign(card.gameObject, parent);
         float posX = (offsetX * card.CardsGiven) + card.transform.position.x;
         float posY = card.transform.position.y;
         card.gameObject.transform.position = new Vector3(posX, posY);
-        card.gameObject.transform.localScale = new Vector3(scaleMultiplierX, scaleMultiplierY);
-
     }
+
 }
 
