@@ -9,6 +9,7 @@ public class DeckController : MonoBehaviour {
 
     private static int cardsNum = 52; // число карт в колоде
     private static int cardsPerPlayer = 2; // число карт выдаваемое игроку
+    private static int cardsOnFlop = 3; // число карт на флопе
     private static int startIndex = 0; // индекс последней выданое карты в колоде
     private static bool giveCardFlag = false; // флаг для проверки ли выдавались карты
 
@@ -30,7 +31,7 @@ public class DeckController : MonoBehaviour {
         Debug.Log("StartIndex " + startIndex);
         giveCardFlag = true;
 
-        startIndex = GiveCard(deck, card, 3, startIndex, "Flop");
+        startIndex = GiveCard(deck, card, cardsOnFlop, startIndex, "Flop");
         Debug.Log("StartIndex " + startIndex);
         giveCardFlag = true;
     }
