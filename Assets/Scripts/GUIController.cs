@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
 
 public class GUIController : MonoBehaviour {
 
@@ -38,6 +39,11 @@ public class GUIController : MonoBehaviour {
 
         for (int i = 0; i < cards.Length; i++) {
 
+            // пока так
+            if(card.GetComponent<Image>().sprite.name == "card-back") {
+                Destroy(this.card.gameObject);
+            }
+
             switch(cards[i].Location) {
                 case "Player Hand": ChangeCardPosition(cards[i], playerHand, offsetX); break;
                 case "Flop": ChangeCardPosition(cards[i], flop, offsetX, offsetY, scaleMultiplierX, scaleMultiplierY); break;
@@ -53,6 +59,8 @@ public class GUIController : MonoBehaviour {
 
         GameObjectUtility.SetParentAndAlign(card.gameObject, parent);
         float posX = (offsetX * card.CardsGiven) + card.transform.position.x;
+        // тесты
+        Debug.Log("Card " + card.Id + " CardsGIven " + card.CardsGiven + " PosX" + posX);
         float posY = offsetY + card.transform.position.y;
         card.gameObject.transform.position = new Vector3(posX, posY);
         card.gameObject.transform.localScale = new Vector3(scaleMultiplierX, scaleMultiplierY);
