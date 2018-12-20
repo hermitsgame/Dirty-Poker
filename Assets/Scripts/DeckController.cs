@@ -84,13 +84,12 @@ public class DeckController : MonoBehaviour {
 
             cardsGiven++;
             startIndex++;
-
+            card.CardsGiven += cardsGiven;
+            Debug.Log("CardsGiven " + card.CardsGiven);
             // если индекс последней выданой карте раве индексу кол-ва вадваемых карт - прекращаем выдачу!
             if (cardsGiven == cardsPerPlayer) break;
         }
         // тесты
-        card.CardsGiven += cardsGiven;
-        Debug.Log("CardsGiven " + card.CardsGiven);
         return startIndex + 1;
     }
 }
