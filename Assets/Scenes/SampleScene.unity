@@ -354,8 +354,8 @@ MonoBehaviour:
   flop: {fileID: 69760258}
   Turn: {fileID: 517162927}
   River: {fileID: 289757548}
-  offsetX: 20
-  offsetY: 0
+  offsetX: -35
+  offsetY: -150
   scaleMultiplierX: 1
   scaleMultiplierY: 1
   cards: []
