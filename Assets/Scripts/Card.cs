@@ -7,16 +7,19 @@ public class Card : MonoBehaviour {
 
     [SerializeField] private DeckController deck;
 
-    
+    private CardLocation cardLocation;
+
     private int id; // id карты
     private string suit; // масть карты
     private string rank; // ранк карты
-    private string location = "Deck"; // местонахождение карты
 
     private int cardsGiven; // номер карты во время выдачи
 
     // свойства 
-
+    public CardLocation CardLocation {
+        get { return cardLocation; }
+        set { cardLocation = value; }
+    }
     public int Id {
         get { return id; }
     }
@@ -26,15 +29,15 @@ public class Card : MonoBehaviour {
     public string Rank {
         get { return rank; }
     }
-    public string Location {
-        get { return location; }
-        set { location = value; }
-    }
     public int CardsGiven {
         get { return cardsGiven; }
         set { cardsGiven = value; }
     }
 
+
+    private void Awake() {
+        cardLocation = this.gameObject.GetComponent<CardLocation>();
+    }
     // задаем параметры карте:
     public void SetCard(int Id, Sprite image) {
         // задаем id
@@ -45,6 +48,6 @@ public class Card : MonoBehaviour {
         // задаем картинку на карту
         GetComponent<Image>().sprite = image;
         // тесты
-        Debug.Log("ID: " + id + " " + suit + " " + rank + " " + location);
+        Debug.Log("ID: " + id + " " + suit + " " + rank + " " + cardLocation.LocationName);
     }
 }
