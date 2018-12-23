@@ -44,7 +44,7 @@ public class GUIController : MonoBehaviour {
                 Destroy(this.card.gameObject);
             }
 
-            switch(cards[i].Location) {
+            switch(cards[i].CardLocation.LocationName) {
                 case "Player Hand": ChangeCardPosition(cards[i], playerHand, offsetX); break;
                 case "Flop": ChangeCardPosition(cards[i], flop, offsetX, offsetY, scaleMultiplierX, scaleMultiplierY); break;
                 case "Turn": ChangeCardPosition(cards[i], Turn, offsetX, offsetY, scaleMultiplierX, scaleMultiplierY); break;
@@ -58,6 +58,10 @@ public class GUIController : MonoBehaviour {
     void ChangeCardPosition(Card card, GameObject parent, float offsetX, float offsetY, float scaleMultiplierX, float scaleMultiplierY) {
 
         GameObjectUtility.SetParentAndAlign(card.gameObject, parent);
+
+        if (card.CardsGiven == 1) {
+            offsetX = 0; 
+        }
         float posX = (offsetX * card.CardsGiven) + card.transform.position.x;
         // тесты
         Debug.Log("Card " + card.Id + " CardsGIven " + card.CardsGiven + " PosX" + posX);
