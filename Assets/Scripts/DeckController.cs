@@ -52,7 +52,7 @@ public class DeckController : MonoBehaviour {
 
     }
 
-    private int GiveCard(int[] deck, Card card, int cardsPerPlayer, int startIndex, string cardLocation) {
+    private int GiveCard(int[] deck, Card card, int cardsPerPlayer, int startIndex, string cardLocationName) {
 
         int cardsGiven = 0; // номер карты во время выдачи
 
@@ -74,7 +74,7 @@ public class DeckController : MonoBehaviour {
 
             card = Instantiate(card);
             card.gameObject.SetActive(true); // перенести в ГУИ
-            card.Location = cardLocation;
+            card.CardLocation.LocationName = cardLocationName;
 
             int index = i;
             int id = deck[index];
