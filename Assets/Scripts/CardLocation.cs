@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CardLocation : MonoBehaviour {
 
-    private string name;
+    private string locationName = "Deck";
 
     private float offsetX;
     private float offsetY;
@@ -14,9 +14,9 @@ public class CardLocation : MonoBehaviour {
 
     private int cardsGiven;
 
-    public string Name {
-        get { return name; }
-        set { name = value; }
+    public string LocationName {
+        get { return locationName; }
+        set { locationName = value; }
     }
     public float OffsetX {
         get { return offsetX; }
@@ -34,10 +34,4 @@ public class CardLocation : MonoBehaviour {
         get { return scaleMultiplierY; }
         set { scaleMultiplierY = value; }
     }
-    public int CardsGiven {
-        get { return cardsGiven; }
-        set { cardsGiven = value; }
-    }
-
-
 }
