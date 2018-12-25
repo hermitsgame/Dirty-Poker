@@ -9,11 +9,10 @@ public class CardLocation : MonoBehaviour {
     private float offsetX;
     private float offsetY;
 
-    private float scaleMultiplierX;
-    private float scaleMultiplierY;
+    private float scaleMultiplierX = 1.0f;
+    private float scaleMultiplierY = 1.0f;
 
-    private int cardsGiven;
-
+    // свойства
     public string LocationName {
         get { return locationName; }
         set { locationName = value; }
