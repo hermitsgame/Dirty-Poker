@@ -7,6 +7,8 @@ public class DeckController : MonoBehaviour {
     [SerializeField] private Card card;
     [SerializeField] private Sprite[] images = new Sprite[cardsNum];
 
+    private Card[] cards;
+
     private static int cardsNum = 52; // число карт в колоде
     private static int cardsPerPlayer = 2; // число карт выдаваемое игроку
     private static int cardsOnFlop = 3; // число карт на флопе
@@ -16,6 +18,10 @@ public class DeckController : MonoBehaviour {
     public bool GiveCardFlag {
         get { return giveCardFlag; }
         set { giveCardFlag = value; }
+    }
+
+    public Card[] Cards {
+        get { return cards; }
     }
     private void Start() {
         // создаем колоду через массив
@@ -34,6 +40,14 @@ public class DeckController : MonoBehaviour {
         startIndex = GiveCard(deck, card, cardsOnFlop, startIndex, "Flop");
         Debug.Log("StartIndex " + startIndex);
         giveCardFlag = true;
+
+        cards = (Card[])GameObject.FindObjectsOfType(typeof(Card));
+
+
+    }
+
+    private void Update() {
+
     }
     // метод для тасование колоды
     private int[] ShuffleDeck(int[] numbers) {
@@ -51,7 +65,7 @@ public class DeckController : MonoBehaviour {
         return newArray;
 
     }
-
+    // выдать карту
     private int GiveCard(int[] deck, Card card, int cardsPerPlayer, int startIndex, string cardLocationName) {
 
         int cardsGiven = 0; // номер карты во время выдачи
@@ -89,7 +103,7 @@ public class DeckController : MonoBehaviour {
             // если индекс последней выданой карте раве индексу кол-ва вадваемых карт - прекращаем выдачу!
             if (cardsGiven == cardsPerPlayer) break;
         }
-        // тесты
+        // возвращаем последний индекс входа в колоду
         return startIndex + 1;
     }
 }
