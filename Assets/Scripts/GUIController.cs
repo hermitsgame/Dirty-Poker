@@ -14,13 +14,6 @@ public class GUIController : MonoBehaviour {
     [SerializeField] private GameObject Turn;
     [SerializeField] private GameObject River;
 
-    public float offsetX = 0.0f;
-    public float offsetY = 0.0f;
-    public float scaleMultiplierX = 1.0f;
-    public float scaleMultiplierY = 1.0f;
-
-    public Card[] cards;
-
     void Start () {
 
         card.gameObject.SetActive(false);
@@ -29,8 +22,7 @@ public class GUIController : MonoBehaviour {
     private void Update() {
 
         if (deckController.GiveCardFlag == true) {
-            cards = (Card[])GameObject.FindObjectsOfType(typeof(Card));
-            CardTransformer(cards);
+            CardTransformer(deckController.Cards);
             deckController.GiveCardFlag = false;
         }
     }
@@ -45,10 +37,28 @@ public class GUIController : MonoBehaviour {
             }
 
             switch(cards[i].CardLocation.LocationName) {
-                case "Player Hand": ChangeCardPosition(cards[i], playerHand, offsetX); break;
-                case "Flop": ChangeCardPosition(cards[i], flop, offsetX, offsetY, scaleMultiplierX, scaleMultiplierY); break;
-                case "Turn": ChangeCardPosition(cards[i], Turn, offsetX, offsetY, scaleMultiplierX, scaleMultiplierY); break;
-                case "River": ChangeCardPosition(cards[i], River, offsetX, offsetY, scaleMultiplierX, scaleMultiplierY); break;
+                case "Player Hand":
+                    cards[i].CardLocation.OffsetX = -50.0f;
+                    ChangeCardPosition(cards[i], playerHand, cards[i].CardLocation.OffsetX);
+                    break;
+                case "Flop":
+                    cards[i].CardLocation.OffsetX = 80.0f;
+                    cards[i].CardLocation.OffsetY = -110.0f;
+                    ChangeCardPosition(cards[i], flop, cards[i].CardLocation.OffsetX, cards[i].CardLocation.OffsetY,
+                        cards[i].CardLocation.ScaleMultipillerX, cards[i].CardLocation.ScaleMultipillerY);
+                    break;
+                case "Turn":
+                    cards[i].CardLocation.OffsetX = 80.0f;
+                    cards[i].CardLocation.OffsetY = -110.0f;
+                    ChangeCardPosition(cards[i], Turn, cards[i].CardLocation.OffsetX, cards[i].CardLocation.OffsetY,
+                        cards[i].CardLocation.ScaleMultipillerX, cards[i].CardLocation.ScaleMultipillerY);
+                    break;
+                case "River":
+                    cards[i].CardLocation.OffsetX = 80.0f;
+                    cards[i].CardLocation.OffsetY = -110.0f;
+                    ChangeCardPosition(cards[i], River, cards[i].CardLocation.OffsetX, cards[i].CardLocation.OffsetY,
+                        cards[i].CardLocation.ScaleMultipillerX, cards[i].CardLocation.ScaleMultipillerY);
+                    break;
 
                 default: Debug.Log("Unknown location!"); break;
             }
@@ -59,9 +69,6 @@ public class GUIController : MonoBehaviour {
 
         GameObjectUtility.SetParentAndAlign(card.gameObject, parent);
 
-        if (card.CardsGiven == 1) {
-            offsetX = 0; 
-        }
         float posX = (offsetX * card.CardsGiven) + card.transform.position.x;
         // тесты
         Debug.Log("Card " + card.Id + " CardsGIven " + card.CardsGiven + " PosX" + posX);
@@ -72,8 +79,11 @@ public class GUIController : MonoBehaviour {
 
     void ChangeCardPosition(Card card, GameObject parent, float offsetX) {
 
+        if (card.CardsGiven == 1) {
+            offsetX = -20.0f;
+        }
         GameObjectUtility.SetParentAndAlign(card.gameObject, parent);
-        float posX = (offsetX * card.CardsGiven) + card.transform.position.x;
+        float posX = (offsetX * card.CardsGiven) + this.card.transform.position.x;
         float posY = card.transform.position.y;
         card.gameObject.transform.position = new Vector3(posX, posY);
     }
