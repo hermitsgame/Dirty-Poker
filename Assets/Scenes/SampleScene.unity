@@ -285,7 +285,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -40, y: 55}
+  m_AnchoredPosition: {x: -30, y: 60}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &289757548
@@ -354,11 +354,6 @@ MonoBehaviour:
   flop: {fileID: 69760258}
   Turn: {fileID: 517162927}
   River: {fileID: 289757548}
-  offsetX: -40
-  offsetY: -100
-  scaleMultiplierX: 1
-  scaleMultiplierY: 1
-  cards: []
 --- !u!224 &330771335
 RectTransform:
   m_ObjectHideFlags: 0
@@ -568,7 +563,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 1.5, z: -4.5}
+  m_LocalPosition: {x: 1, y: 2.2, z: -4.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1100,6 +1095,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1787898541 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100038, guid: 0158a0b02ffee4d4d9c96c3cdf89b335,
+    type: 3}
+  m_PrefabInternal: {fileID: 74037213}
+--- !u!114 &1787898544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1787898541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 643d03c0d9395ad4089b1ae2bca9152d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 1828780788}
+  deckController: {fileID: 1226566866}
 --- !u!1 &1828780786
 GameObject:
   m_ObjectHideFlags: 0
