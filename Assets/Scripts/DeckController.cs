@@ -42,8 +42,6 @@ public class DeckController : MonoBehaviour {
         giveCardFlag = true;
 
         cards = (Card[])GameObject.FindObjectsOfType(typeof(Card));
-
-
     }
 
     private void Update() {
