@@ -5,18 +5,25 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour {
 
-    [SerializeField] private Text startLabel;
+    [SerializeField] Text startGameLabel;
 
-    private bool startGameFlag = false;
-	// Use this for initialization
-	void Start () {
-        StartCoroutine(textBlinking(startLabel));
+    private bool startGameFlag;
 
+    public bool StartGameFlag {
+        get { return startGameFlag; }
+        set { startGameFlag = value; }
+    }
+
+    private void Awake() {
+        startGameFlag = false;
+    }
+    // Use this for initialization
+    void Start () {
     }
 	
 	// Update is called once per frame
 	void Update () {
-        StartTheGame(startLabel);
+        StartTheGame(startGameLabel);
     }
 
     void StartTheGame(Text text) {
@@ -25,16 +32,7 @@ public class UIController : MonoBehaviour {
             Destroy(text.gameObject);
             startGameFlag = true;
             Debug.Log("GAME STARTED!");
+            this.enabled = false;
         }
-    }
-    IEnumerator textBlinking(Text text) {
-
-            while(startGameFlag != true) {
-                text.text = "";
-                yield return new WaitForSeconds(.5f);
-                text.text = "Press \"SPACE\" button to start!";
-                yield return new WaitForSeconds(.5f);
-            }
-
     }
 }
