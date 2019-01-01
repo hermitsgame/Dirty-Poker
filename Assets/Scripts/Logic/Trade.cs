@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trade : MonoBehaviour, ICardsOpeations {
+public class Trade : MonoBehaviour {
 
     [SerializeField] private Card card;
     [SerializeField] private DeckController deckController;
@@ -20,11 +20,8 @@ public class Trade : MonoBehaviour, ICardsOpeations {
         set { score = value; }
     }
 
-    public IEnumerator GetCards(Card[] cards, string cardLocation) {
-        throw new System.NotImplementedException();
-    }
+    private void Start() {
 
-    public void SumScore(int firstCard, int secondCard) {
-        throw new System.NotImplementedException();
+       // Debug.Log(deckController.Cards.Length);
     }
 }
