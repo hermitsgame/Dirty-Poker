@@ -20,7 +20,7 @@ public class GUIController : MonoBehaviour {
     }
 
     private void Update() {
-
+        // костыль исправить!!!
         if (deckController.GiveCardFlag == true) {
             CardTransformer(deckController.Cards);
             deckController.GiveCardFlag = false;
@@ -31,10 +31,11 @@ public class GUIController : MonoBehaviour {
 
         for (int i = 0; i < cards.Length; i++) {
 
-            // пока так
-            if(card.GetComponent<Image>().sprite.name == "card-back") {
+           /*
+            if(card.GetComponent<Image>().sprite.name == "card-back" && card.gameObject != null) {
                 Destroy(this.card.gameObject);
             }
+            */
 
             switch(cards[i].CardLocation.LocationName) {
                 case "Player Hand":
