@@ -330,7 +330,6 @@ GameObject:
   m_Component:
   - component: {fileID: 330771335}
   - component: {fileID: 330771334}
-  - component: {fileID: 330771336}
   m_Layer: 5
   m_Name: GUI Controller
   m_TagString: Untagged
@@ -373,18 +372,6 @@ RectTransform:
   m_AnchoredPosition: {x: -87.74921, y: 8.1601715}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &330771336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 330771333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc3398c93167dcf4eae4bb0bce2dddaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startLabel: {fileID: 1567104287}
 --- !u!1 &402635923
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,6 +833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 1828780788}
+  startTheGame: {fileID: 1567104289}
   images:
   - {fileID: 21300000, guid: 817da1677339d3943a70d71f9489f403, type: 3}
   - {fileID: 21300000, guid: c76ec42e30cde8843872b20c51d9391b, type: 3}
@@ -1057,6 +1045,7 @@ GameObject:
   - component: {fileID: 1567104286}
   - component: {fileID: 1567104288}
   - component: {fileID: 1567104287}
+  - component: {fileID: 1567104289}
   m_Layer: 5
   m_Name: Press "Space" to start
   m_TagString: Untagged
@@ -1122,6 +1111,18 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1567104285}
   m_CullTransparentMesh: 0
+--- !u!114 &1567104289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1567104285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc3398c93167dcf4eae4bb0bce2dddaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startLabel: {fileID: 1567104287}
 --- !u!1 &1623969180
 GameObject:
   m_ObjectHideFlags: 0
