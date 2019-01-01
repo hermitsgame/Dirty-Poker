@@ -5,6 +5,7 @@ using UnityEngine;
 public class DeckController : MonoBehaviour {
 
     [SerializeField] private Card card;
+    [SerializeField] private UIController startTheGame;
     [SerializeField] private Sprite[] images = new Sprite[cardsNum];
 
     private Card[] cards;
@@ -24,37 +25,34 @@ public class DeckController : MonoBehaviour {
     public Card[] Cards {
         get { return cards; }
     }
+
+    private void Awake() {
+    }
     private void Start() {
-        // создаем колоду через массив
-        int[] deck = new int[cardsNum];
-        // заполняем массив
-        for (int i = 0; i < cardsNum; i++) {
-            deck[i] = i;
-        }
-        // тасуем колоду
-        deck = ShuffleDeck(deck);
 
-        startIndex = GiveCard(deck, card, cardsPerPlayer, startIndex, "Player Hand");
-        Debug.Log("StartIndex " + startIndex);
-        giveCardFlag = true;
-
-        startIndex = GiveCard(deck, card, cardsOnFlop, startIndex, "Flop");
-        Debug.Log("StartIndex " + startIndex);
-        giveCardFlag = true;
-
-        startIndex = GiveCard(deck, card, cardsOnTurnAndRiver, startIndex, "Turn");
-        Debug.Log("StartIndex " + startIndex);
-        giveCardFlag = true;
-
-        startIndex = GiveCard(deck, card, cardsOnTurnAndRiver, startIndex, "River");
-        Debug.Log("StartIndex " + startIndex);
-        giveCardFlag = true;
-
-        cards = (Card[])GameObject.FindObjectsOfType(typeof(Card));
     }
 
     private void Update() {
+        if (startTheGame.StartGameFlag == true) {
+            int[] deck = new int[cardsNum];
+            for (int i = 0; i < cardsNum; i++) {
+                deck[i] = i;
+            }
+            // тасуем колоду
+            deck = ShuffleDeck(deck);
 
+            GiveCard(deck, card, cardsPerPlayer, "Player Hand");
+
+            GiveCard(deck, card, cardsOnFlop,  "Flop");
+
+            GiveCard(deck, card, cardsOnTurnAndRiver, "Turn");
+
+            GiveCard(deck, card, cardsOnTurnAndRiver, "River");
+
+            cards = (Card[])GameObject.FindObjectsOfType(typeof(Card));
+
+            startTheGame.StartGameFlag = false;
+        }
     }
     // метод для тасование колоды
     private int[] ShuffleDeck(int[] numbers) {
@@ -72,8 +70,11 @@ public class DeckController : MonoBehaviour {
         return newArray;
 
     }
+   /* IEnumerator GiveCards() {
+
+    }*/
     // выдать карту
-    private int GiveCard(int[] deck, Card card, int cardsPerPlayer, int startIndex, string cardLocationName) {
+    private void GiveCard(int[] deck, Card card, int cardsPerPlayer, string cardLocationName) {
 
         int cardsGiven = 0; // номер карты во время выдачи
 
@@ -82,12 +83,10 @@ public class DeckController : MonoBehaviour {
 
             Debug.Log("Error! There are fewer cards in the deck than you need to give out! "
                 + "Cards in the deck: " + (deck.Length - startIndex) + " Cards need to give out: " + cardsPerPlayer);
-            return 0;
         }
 
         if (startIndex == deck.Length) {
             Debug.Log("Error! The deck is empty!");
-            return 0;
         }
 
         // начинаем выдачу карту с последнего индекса в колоде
@@ -104,13 +103,14 @@ public class DeckController : MonoBehaviour {
             card.SetCard(id, images[id]);
 
             cardsGiven++;
-            startIndex++;
             card.CardsGiven += cardsGiven;
-            Debug.Log("CardsGiven " + card.CardsGiven);
+            startIndex += 1;
+            giveCardFlag = true;
             // если индекс последней выданой карте раве индексу кол-ва вадваемых карт - прекращаем выдачу!
+
             if (cardsGiven == cardsPerPlayer) break;
         }
         // возвращаем последний индекс входа в колоду
-        return startIndex + 1;
+        // return startIndex + 1;
     }
 }
